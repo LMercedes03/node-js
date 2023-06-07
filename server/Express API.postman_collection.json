@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "GET Message",
+			"name": "GET /message",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -23,7 +23,8 @@
 					"query": [
 						{
 							"key": "Content-Type",
-							"value": "application/json"
+							"value": "application/json",
+							"description": "Returns {\"message\": \"Hello World}"
 						}
 					]
 				}
@@ -32,25 +33,141 @@
 		},
 		{
 			"name": "GET /car",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "127.0.0.1/car?Content-Type=application/json",
+					"raw": "http://localhost/car/2",
+					"protocol": "http",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"localhost"
+					],
+					"path": [
+						"car",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /car/make",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost/car/Ford",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"car",
+						"Ford"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"make\" : \"Tesla\",\r\n    \"model\": \"Model X\",\r\n    \"color\" : \"Red\",\r\n    \"price\" : 110000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
 					"path": [
 						"car"
-					],
-					"query": [
-						{
-							"key": "Content-Type",
-							"value": "application/json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT /car",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"carId\" : 1,\r\n    \"make\": \"Mazda\",\r\n    \"model\" : \"Mazda6\",\r\n    \"price\" : 30000,\r\n    \"color\" : \"silver\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"car"
 					]
 				}
 			},
