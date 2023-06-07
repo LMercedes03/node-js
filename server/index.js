@@ -40,10 +40,19 @@ app.get('/message', cors(corsOptions), async (req, res) => {
 // })
 
 // Post Car
-app.post('/car', cors(corsOptions), async (req, res) =>{
-    const { make, model, color, price } = req.body;
-    const INSERT_CAR = 'INSERT INTO car (make, model, color, price) VALUES (?, ?, ?, ?)';
-    const results = await promisePool.query(INSERT_CAR, [make, model, color, price]);
+// app.post('/car', cors(corsOptions), async (req, res) =>{
+//     const { make, model, color, price } = req.body;
+//     const INSERT_CAR = 'INSERT INTO car (make, model, color, price) VALUES (?, ?, ?, ?)';
+//     const results = await promisePool.query(INSERT_CAR, [make, model, color, price]);
+//     console.log(results[0])
+//     res.send(results[0])
+// })
+
+// Put Car
+app.put('/car', cors(corsOptions), async (req, res) =>{
+    const { make, model, color, price, carId } = req.body;
+    const UPDATE_CAR = "update car set make = ?, model = ?, color = ?, price = ? where car_id = ?";
+    const results = await promisePool.query(UPDATE_CAR, [make, model, color, price, carId]);
     console.log(results[0])
     res.send(results[0])
 })
