@@ -31,10 +31,19 @@ app.get('/message', cors(corsOptions), async (req, res) => {
 // })
    
 // Get Car Make
-app.get('/car/:make', cors(corsOptions), async (req, res) =>{
-    const make   = req.params.make;
-    const SELECT_CAR_BY_MAKE = "SELECT * from car WHERE make = ?"
-    const results = await promisePool.query(SELECT_CAR_BY_MAKE, [make]);
+// app.get('/car/:make', cors(corsOptions), async (req, res) =>{
+//     const make   = req.params.make;
+//     const SELECT_CAR_BY_MAKE = "SELECT * from car WHERE make = ?"
+//     const results = await promisePool.query(SELECT_CAR_BY_MAKE, [make]);
+//     console.log(results[0])
+//     res.send(results[0])
+// })
+
+// Post Car
+app.post('/car', cors(corsOptions), async (req, res) =>{
+    const { make, model, color, price } = req.body;
+    const INSERT_CAR = 'INSERT INTO car (make, model, color, price) VALUES (?, ?, ?, ?)';
+    const results = await promisePool.query(INSERT_CAR, [make, model, color, price]);
     console.log(results[0])
     res.send(results[0])
 })
