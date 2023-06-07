@@ -21,15 +21,24 @@ app.get('/message', cors(corsOptions), async (req, res) => {
     })
 
 
-// Get Car
-app.get('/car/:carId', cors(corsOptions), async (req, res) =>{
-    const { carId } = req.params;
-    // const SELECT_CAR = "select * from car where car_id = ?"
-    const results = await promisePool.query("select * from car where car_id = ?", [carId]);
+// Get Car by ID
+// app.get('/car/:carId', cors(corsOptions), async (req, res) =>{
+//     const carId = req.params.carId;
+//     const SELECT_CAR = "select * from car where car_id = ?"
+//     const results = await promisePool.query(SELECT_CAR , [carId]);
+//     console.log(results[0])
+//     res.send(results[0])
+// })
+   
+// Get Car Make
+app.get('/car/:make', cors(corsOptions), async (req, res) =>{
+    const make   = req.params.make;
+    const SELECT_CAR_BY_MAKE = "SELECT * from car WHERE make = ?"
+    const results = await promisePool.query(SELECT_CAR_BY_MAKE, [make]);
     console.log(results[0])
     res.send(results[0])
 })
-   
+
 
 app.listen(PORT, () => {
     console.log(`Express web API running on port: ${PORT}.`)
