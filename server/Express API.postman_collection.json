@@ -172,6 +172,25 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "DELETE /car",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/car/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"car",
+						"8"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

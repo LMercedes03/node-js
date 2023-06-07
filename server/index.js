@@ -21,7 +21,7 @@ app.get('/message', cors(corsOptions), async (req, res) => {
     })
 
 
-// Get Car by ID
+// GET Car by ID
 // app.get('/car/:carId', cors(corsOptions), async (req, res) =>{
 //     const carId = req.params.carId;
 //     const SELECT_CAR = "select * from car where car_id = ?"
@@ -30,7 +30,7 @@ app.get('/message', cors(corsOptions), async (req, res) => {
 //     res.send(results[0])
 // })
    
-// Get Car Make
+// GET Car Make
 // app.get('/car/:make', cors(corsOptions), async (req, res) =>{
 //     const make   = req.params.make;
 //     const SELECT_CAR_BY_MAKE = "SELECT * from car WHERE make = ?"
@@ -39,7 +39,7 @@ app.get('/message', cors(corsOptions), async (req, res) => {
 //     res.send(results[0])
 // })
 
-// Post Car
+// POST Car
 // app.post('/car', cors(corsOptions), async (req, res) =>{
 //     const { make, model, color, price } = req.body;
 //     const INSERT_CAR = 'INSERT INTO car (make, model, color, price) VALUES (?, ?, ?, ?)';
@@ -48,15 +48,23 @@ app.get('/message', cors(corsOptions), async (req, res) => {
 //     res.send(results[0])
 // })
 
-// Put Car
-app.put('/car', cors(corsOptions), async (req, res) =>{
-    const { make, model, color, price, carId } = req.body;
-    const UPDATE_CAR = "update car set make = ?, model = ?, color = ?, price = ? where car_id = ?";
-    const results = await promisePool.query(UPDATE_CAR, [make, model, color, price, carId]);
+// PUT Car
+// app.put('/car', cors(corsOptions), async (req, res) =>{
+//     const { make, model, color, price, carId } = req.body;
+//     const UPDATE_CAR = "update car set make = ?, model = ?, color = ?, price = ? where car_id = ?";
+//     const results = await promisePool.query(UPDATE_CAR, [make, model, color, price, carId]);
+//     console.log(results[0])
+//     res.send(results[0])
+// })
+
+// DELETE Car by ID
+app.delete('/car/:carId', cors(corsOptions), async (req, res) =>{
+    const carId = req.params.carId;
+    const DELETE_CAR = "delete from car where car_id = ?"
+    const results = await promisePool.query(DELETE_CAR , [carId]);
     console.log(results[0])
     res.send(results[0])
 })
-
 
 app.listen(PORT, () => {
     console.log(`Express web API running on port: ${PORT}.`)
